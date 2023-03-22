@@ -17,4 +17,27 @@ model User{
   password String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  transactions Transaction[]
+  categories Category[]
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  category_name String
+  user User @relation(fields: [user_id],references: [id])
+  user_id Int
+  transactions Transaction[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Transaction{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [user_id],references: [id])
+  category Category @relation(fields: [category_id],references: [id])
+  user_id Int
+  category_id Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
 }
