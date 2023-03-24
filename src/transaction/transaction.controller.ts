@@ -1,3 +1,4 @@
+import { PaginationQuery } from './dtos/transaction.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Body, Controller, Get, Post, Query, UseGuards, NotFoundException } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
@@ -10,9 +11,9 @@ export class TransactionController {
     constructor(private readonly service : TransactionService){}
 
     @Get()
-    async index(@Query() query){
+    async index(@Query() query : PaginationQuery){
         console.log(query)
-        return this.service.paginationTransaction(+query.take,+query.skip)
+        return this.service.paginationTransaction(query)
     }
 
     @Post()
