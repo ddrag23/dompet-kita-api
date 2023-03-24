@@ -11,7 +11,7 @@ import { LocalStrategy } from './strategy/local.strategy';
 @Module({
   imports :[UserModule,PassportModule,JwtModule.register({
     secret: process.env.JWT_SECRET,
-    signOptions: { expiresIn: '60s' },
+    signOptions: { expiresIn: '365d' },
   })],
   providers: [AuthService,UserService,JwtStrategy,JwtService,PrismaService,LocalStrategy],
   controllers: [AuthController],
