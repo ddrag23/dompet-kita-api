@@ -19,6 +19,7 @@ model User{
   updated_at DateTime @updatedAt
   transactions Transaction[]
   categories Category[]
+  balance Balance?
 }
 
 model Category{
@@ -39,5 +40,13 @@ model Transaction{
   category_id Int
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
 
+model Balance{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [user_id],references: [id])
+  user_id Int @unique
+  nominal Float
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

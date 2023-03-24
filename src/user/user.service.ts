@@ -33,6 +33,12 @@ export class UserService {
         return this.prisma.user.findUnique({where:{id}})
     }
 
+    async getUserWithBalance(id : number): Promise<User | null>{
+        return this.prisma.user.findUnique({where:{id},include:{
+            balance:true
+        }})
+    }
+
     async getUserByUsername(username:string){
         return this.prisma.user.findUnique({where:{username}})
 
