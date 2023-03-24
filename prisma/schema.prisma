@@ -36,6 +36,9 @@ model Transaction{
   id Int @id @default(autoincrement())
   user User @relation(fields: [user_id],references: [id])
   category Category @relation(fields: [category_id],references: [id])
+  title String
+  nominal Float
+  description String?
   user_id Int
   category_id Int
   created_at DateTime @default(now())
