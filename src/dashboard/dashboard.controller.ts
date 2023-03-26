@@ -8,8 +8,8 @@ export class DashboardController {
     constructor(private readonly service : DashboardService){}
 
     @Get('total-transaction')
-    async totalTransaction(@Request() req) {
+    async totalTransaction(@Request() req) :Promise<any> {
         console.log(new Date())
-        return await Promise.all([this.service.totalTransactionCurrentMonth(req.user.sub)])
+        return this.service.totalTransactionCurrentMonth(req.user.sub)
     }
 }
