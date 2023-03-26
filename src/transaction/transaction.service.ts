@@ -13,7 +13,7 @@ export class TransactionService {
         let pages = Math.ceil(totalData / +pq.take)
         const data = await this.prisma.transaction.findMany({ take: +pq.take, skip: start, orderBy:{
             [pq.sortBy]:pq.sortType
-        } })
+        },include:{category:true} })
         const currentPage = (start  / +pq.take) + 1
         return {
             data,
