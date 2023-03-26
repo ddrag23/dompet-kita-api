@@ -17,8 +17,12 @@ export class TransactionController {
     }
 
     @Post()
-    async store(@Body() dto : Transaction){
-        return this.service.createTransaction(dto)
+    async store(@Body() dto : Transaction) : Promise<Object>{
+        const data = await this.service.createTransaction(dto)
+        return {
+            message : 'Data transaksi berhasil disimpan',
+            data
+        }
     }
 
     @Put(":id")

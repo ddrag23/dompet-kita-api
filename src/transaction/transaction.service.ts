@@ -8,7 +8,7 @@ export class TransactionService {
     constructor(private readonly prisma: PrismaService) { }
 
     async paginationTransaction(pq : PaginationQuery): Promise<Object> {
-        let start = +pq.skip > 1 ? (+pq.skip * ++pq.take) - +pq.take : 0
+        let start = +pq.skip > 1 ? (+pq.skip * +pq.take) - +pq.take : 0
         const totalData = await this.prisma.transaction.count()
         let pages = Math.ceil(totalData / +pq.take)
         const data = await this.prisma.transaction.findMany({ take: +pq.take, skip: start, orderBy:{
@@ -19,6 +19,7 @@ export class TransactionService {
             data,
             pages,
             currentPage,
+            totalData,
         }
     }
 
