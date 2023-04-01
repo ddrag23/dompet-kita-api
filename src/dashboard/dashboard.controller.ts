@@ -12,4 +12,10 @@ export class DashboardController {
         console.log(new Date())
         return this.service.totalTransactionCurrentMonth(req.user.sub)
     }
+
+    @Get('total-transaction-pie-chart')
+    async totalTransactionByCategory(@Request() req) : Promise<any>{
+        console.log(req.user)
+        return this.service.totalByCategory(req.user.sub)
+    }
 }
